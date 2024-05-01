@@ -18,12 +18,12 @@ mongoose.connect(process.env.mongo_url, { useNewUrlParser: true, useUnifiedTopol
 
 app.use('/api/portfolio', portfolioRoute);
 
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static(path.join(__dirname, 'client/build')));
-//   app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'client/build/index.html'));
-//   });
-// }
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'client/build')));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build/index.html'));
+  });
+}
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
